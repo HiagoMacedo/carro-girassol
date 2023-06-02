@@ -9,7 +9,7 @@ public:
   Rastreador(byte ldrSuperior, byte ldrInferior);
 
   void init();
-  void posicaoSol();
+  byte posicaoSol();
 
 private:
   byte _ldrSuperior;
