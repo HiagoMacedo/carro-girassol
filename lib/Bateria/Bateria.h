@@ -10,9 +10,7 @@ class Bateria
   bool checarNivel();
 
   private:
-  const byte _pinoBateria; // Pino ANALOG
-  int _valorLido;
-  float _tensaoBateria;
+  byte _pinoBateria; // Pino ANALOG
 };
 
 #endif
