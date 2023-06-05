@@ -2,24 +2,28 @@
 #include <Servo.h>
 #include "MeuServo.h"
 
-MeuServo::MeuServo() : _posicao(0) {}
 
-void MeuServo::init(byte pino_servo)
+// MeuServo::MeuServo(byte pino_servo) : _pinoServo(pino_servo), _posicao(0) {}
+MeuServo::MeuServo(byte pino_servo) : _pinoServo(pino_servo) {}
+
+void MeuServo::init()
 {
-  attach(pino_servo);
+  attach(_pinoServo);
   mover(90);
 }
 
 void MeuServo::mover(int graus)
 {
-  if (_posicao < graus) {
-    for (_grauAtual = _posicao; _grauAtual < graus; _grauAtual++) {
-      write(_grauAtual);
+  static int grauAtual;
+  static int posicao = 0;
+  if (posicao < graus) {
+    for (grauAtual = posicao; grauAtual < graus; grauAtual++) {
+      write(grauAtual);
     }
   } else {
-    for (_grauAtual = _posicao; _grauAtual > graus; _grauAtual--) {
-      write(_grauAtual);
+    for (grauAtual = posicao; grauAtual > graus; grauAtual--) {
+      write(grauAtual);
     }
   }
-  _posicao = _grauAtual;
+  posicao = grauAtual;
 }
