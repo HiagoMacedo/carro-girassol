@@ -21,10 +21,10 @@
 #define MOTOR_B_1 9
 #define MOTOR_B_2 10
 
-#define TRIGGER 12
-#define ECHO 13
+#define TRIGGER 10
+#define ECHO 11
 #define DIST_MAX 25
-#define SERVO 11
+#define SERVO 9
 
 Motor motorA(MOTOR_A_1, MOTOR_A_2, MOTOR_A_EN);
 Motor motorB(MOTOR_B_1, MOTOR_B_2, MOTOR_B_EN);
@@ -32,7 +32,7 @@ Motor motorB(MOTOR_B_1, MOTOR_B_2, MOTOR_B_EN);
 Carro c;
 MeuServo servo;
 
-Ultrassonico sensorUltrassom(TRIGGER, ECHO);
+Ultrassonico sensorUltrassom(TRIGGER, ECHO, SERVO);
 bool temObjeto;
 
 void iniciar()
@@ -40,7 +40,7 @@ void iniciar()
   // c.init(motorA, motorB, sensorUltrassom, SERVO);
   Serial.begin(9600);
   // servo.attach(SERVO);
-  sensorUltrassom.init(SERVO);
+  sensorUltrassom.begin();
   delay(100);
 }
 
@@ -54,7 +54,8 @@ void setup()
 
 void loop() 
 {
-  sensorUltrassom.scannerArea();
+  Serial.print("checarArea = ");
+  Serial.println(sensorUltrassom.checarArea(25));
   delay(3000);
   // Serial.print("Distancia = ");
   // Serial.print(sensorUltrassom.ping());

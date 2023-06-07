@@ -9,23 +9,20 @@ Carro::Carro() {}
 
 Carro::Carro(Motor& motorA, Motor& motorB) : _motorA (motorA), _motorB (motorB) {}
 
-// Carro(Motor& motorA, Motor& motorB, Ultrassonico& sensorUltrassom)
-// : _motorA (motorA)
-// , _motorB (motorB)
-// , _sensorUltrassom (sensorUltrassom)
-// {}
+Carro::Carro(Motor& motorA, Motor& motorB, Ultrassonico& sensorUltrassom)
+: _motorA (motorA)
+, _motorB (motorB)
+, _sensorUltrassom (sensorUltrassom)
+{}
 
 // Motor Carro::getMotorA() { return this->_motorA; }
 // Motor Carro::getMotorB() { return this->_motorB; }
 
-void Carro::init(Motor& motorA, Motor& motorB, Ultrassonico& sensorUltrassom, byte pino_servo)
+void Carro::begin()
 {
-  this->_motorA = motorA;
-  this->_motorB = motorB;
-  this->_sensorUltrassom = sensorUltrassom;
-  _motorA.init();
-  _motorB.init();
-  _sensorUltrassom.init(pino_servo);
+  _motorA.begin();
+  _motorB.begin();
+  _sensorUltrassom.begin();
 }
 
 void Carro::moverFrente(byte velocidade)
@@ -62,7 +59,7 @@ void Carro::girarEsquerda(unsigned int tempo_ms)
 
 void Carro::decisao()
 {
-  switch(_sensorUltrassom.scannerArea()) {
+  switch(_sensorUltrassom.checarArea(25)) {
     case 0:
       girarEsquerda(1400);
       moverFrente(140);

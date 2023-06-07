@@ -9,7 +9,7 @@ Motor::Motor(byte pino1, byte pino2, byte pino_enable)
 {}
 
 
-void Motor::init()
+void Motor::begin()
 {
   pinMode(_pino1, OUTPUT);
   pinMode(_pino2, OUTPUT);

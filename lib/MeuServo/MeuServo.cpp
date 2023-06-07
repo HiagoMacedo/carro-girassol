@@ -3,14 +3,14 @@
 #include "MeuServo.h"
 
 
-// MeuServo::MeuServo(byte pino_servo) : _pinoServo(pino_servo), _posicao(0) {}
-MeuServo::MeuServo(byte pino_servo) : _pinoServo(pino_servo) {}
+MeuServo::MeuServo() {}
+// MeuServo::MeuServo(byte pino_servo) : _pinoServo(pino_servo) {}
 
-void MeuServo::init()
-{
-  attach(_pinoServo);
-  mover(90);
-}
+// void MeuServo::begin(byte pino_servo)
+// {
+//   attach(pino_servo);
+//   mover(90);
+// }
 
 void MeuServo::mover(int graus)
 {
@@ -19,10 +19,12 @@ void MeuServo::mover(int graus)
   if (posicao < graus) {
     for (grauAtual = posicao; grauAtual < graus; grauAtual++) {
       write(grauAtual);
+      delay(4);
     }
   } else {
     for (grauAtual = posicao; grauAtual > graus; grauAtual--) {
       write(grauAtual);
+      delay(4);
     }
   }
   posicao = grauAtual;

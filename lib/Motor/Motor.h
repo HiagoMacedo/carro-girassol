@@ -9,7 +9,7 @@ public:
   Motor();
   Motor(byte pino1, byte pino2, byte pino_enable);
 
-  void init();
+  void begin();
   void moverFrente(byte velocidade);
   void moverTras(byte velocidade);
   void parar();
