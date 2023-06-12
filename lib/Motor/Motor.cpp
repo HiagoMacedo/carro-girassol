@@ -19,23 +19,23 @@ void Motor::begin()
 
 void Motor::moverFrente(int velocidade)
 {
-  analogWrite(this->_pinoEnable, velocidade);
-  digitalWrite(this->_pino1, HIGH);
-  digitalWrite(this->_pino2, LOW);
+  analogWrite(_pinoEnable, velocidade);
+  digitalWrite(_pino1, HIGH);
+  digitalWrite(_pino2, LOW);
 }
 
 void Motor::moverTras(int velocidade)
 {
-  analogWrite(this->_pinoEnable, velocidade);
-  digitalWrite(this->_pino2, HIGH);
-  digitalWrite(this->_pino1, LOW);
+  analogWrite(_pinoEnable, velocidade);
+  digitalWrite(_pino2, HIGH);
+  digitalWrite(_pino1, LOW);
 }
 
 void Motor::parar()
 {
-  analogWrite(this->_pinoEnable, 0);
-  digitalWrite(this->_pino1, LOW);
-  digitalWrite(this->_pino2, LOW);
+  analogWrite(_pinoEnable, 0);
+  digitalWrite(_pino1, LOW);
+  digitalWrite(_pino2, LOW);
 }
 
 void Motor::setPino1(byte pino_1) { this->_pino1 = pino_1; }

@@ -46,10 +46,6 @@ int Ultrassonico::ping()
   return (total_ping/qtd_ping);
 }
 
-struct Casa {
-
-};
-
 int Ultrassonico::checarArea(int distanciaMax)
 {
   _servo.mover(1);
