@@ -12,7 +12,7 @@ class Carro
 public:
   Carro();
   Carro(Motor& motorA, Motor& motorB);
-  Carro(Motor& motorA, Motor& motorB, Ultrassonico& sensorUltrassom);
+  // Carro(Motor& motorA, Motor& motorB, Ultrassonico& sensorUltrassom);
 
   void begin();  /// Inicia os motores do carro
   void moverFrente(byte velocidade);
@@ -20,7 +20,7 @@ public:
   void parar(); /// para os motores do carro
   void girarDireita(unsigned int tempo_ms);  /// 1400ms = 90 graus | 700ms = 45 graus
   void girarEsquerda(unsigned int tempo_ms);
-  void decisao();
+  // void decisao();
 
   // Motor getMotorA();
   // Motor getMotorB();
@@ -29,7 +29,7 @@ private:
   Motor _motorA;  // Direito
   Motor _motorB;  // Esquerdo
   // MeuServo _servo;
-  Ultrassonico _sensorUltrassom;
+  // Ultrassonico _sensorUltrassom;
 };
 
 #endif

@@ -1,52 +1,46 @@
 #include <Arduino.h>
-#include <avr8-stub.h>
-#include <app_api.h>
 #include "Ultrassonico.h"
 #include "Carro.h"
 #include "MeuServo.h"
-
-#define DEBUG 0
-#if DEBUG == 1
-#include <avr8-stub.h>
-#include <app_api.h>
-#else
-#define debug_init()
-#endif
+#include "Rastreador.h"
 
 #define MOTOR_A_EN 5
 #define MOTOR_A_1 6
 #define MOTOR_A_2 7
 
-#define MOTOR_B_EN 8
-#define MOTOR_B_1 9
-#define MOTOR_B_2 10
+#define MOTOR_B_1 8
+#define MOTOR_B_2 9
+#define MOTOR_B_EN 10
 
-#define TRIGGER 10
-#define ECHO 11
-#define DIST_MAX 25
-#define SERVO 9
+#define SERVO_ULTRASSOM 11
+#define ECHO 4
+#define TRIGGER 3
+
+#define SERVO_NORTE_SUL
+#define SERVO_LESTE_OESTE
+
+#define MAX_DISTANCIA 25
+#define VELOCIDADE 140
+#define GIRAR_90 1400
+#define GIRAR_45 700
 
 Motor motorA(MOTOR_A_1, MOTOR_A_2, MOTOR_A_EN);
 Motor motorB(MOTOR_B_1, MOTOR_B_2, MOTOR_B_EN);
-// Carro c(motorA, motorB);
-Carro c;
-MeuServo servo;
 
-Ultrassonico sensorUltrassom(TRIGGER, ECHO, SERVO);
-bool temObjeto;
+Carro carro;
+
+Ultrassonico sensorUltrassom(TRIGGER, ECHO, SERVO_ULTRASSOM);
 
 void iniciar()
 {
-  // c.init(motorA, motorB, sensorUltrassom, SERVO);
-  Serial.begin(9600);
-  // servo.attach(SERVO);
+  carro.begin();
   sensorUltrassom.begin();
+  
   delay(100);
 }
 
 void setup() 
 {
-  debug_init(); 
   iniciar();
 
   delay(300);
@@ -54,11 +48,55 @@ void setup()
 
 void loop() 
 {
-  Serial.print("checarArea = ");
-  Serial.println(sensorUltrassom.checarArea(25));
-  delay(3000);
-  // Serial.print("Distancia = ");
-  // Serial.print(sensorUltrassom.ping());
-  // Serial.println("cm");
-  // delay(100);
+  while(!sensorUltrassom.checarObjeto(MAX_DISTANCIA)) {
+    carro.moverFrente(VELOCIDADE);
+    // delay(200);
+  }
+  carro.parar();
+  delay(100);
+  switch (sensorUltrassom.checarArea(MAX_DISTANCIA)) {
+  case 1: /* 1 grau */
+    carro.girarDireita(1400);
+    delay(400);
+    break;
+  case 2: /* 90 graus */
+    carro.moverFrente(VELOCIDADE);
+    delay(400);
+    break;
+  case 3: /* 180 graus */
+    carro.girarEsquerda(1400);
+    delay(400);
+    break;
+  default: /* dar uma volta */
+    carro.moverTras(VELOCIDADE);
+    delay(400);
+    break;
+  }
+}
+
+void teste() {
+  if(!sensorUltrassom.checarObjeto(MAX_DISTANCIA)) {
+    carro.moverFrente(VELOCIDADE);
+    delay(200);
+  }
+  carro.parar();
+  delay(100);
+  switch (sensorUltrassom.checarArea(MAX_DISTANCIA)) {
+  case 1: /* 1 grau */
+    carro.girarDireita(1400);
+    delay(400);
+    break;
+  case 2: /* 90 graus */
+    carro.moverFrente(VELOCIDADE);
+    delay(400);
+    break;
+  case 3: /* 180 graus */
+    carro.girarEsquerda(1400);
+    delay(400);
+    break;
+  default: /* dar uma volta */
+    carro.moverTras(VELOCIDADE);
+    delay(400);
+    break;
+  }
 }

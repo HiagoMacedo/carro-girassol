@@ -55,6 +55,7 @@ int Ultrassonico::checarArea(int distanciaMax)
 {
   _servo.mover(1);
   if (!checarObjeto(distanciaMax)) {
+    _servo.mover(90);
     return 1;
   }
 
@@ -65,9 +66,10 @@ int Ultrassonico::checarArea(int distanciaMax)
 
   _servo.mover(180);
   if (!checarObjeto(distanciaMax)) {
+    _servo.mover(90);
     return 3;
   }
-
+  _servo.mover(90);
   return 0;
 }
 

@@ -2,18 +2,25 @@
 #define Rastreador_h
 
 #include <Arduino.h>
+#include <Servo.h>
 
-class Rastreador {
+class Rastreador : public Servo {
 public:
   Rastreador();
-  Rastreador(byte ldrSuperior, byte ldrInferior);
 
-  void init();
-  byte posicaoSol();
-
+  void begin();
+  void update_posicao(const int& valor1, const int& valor2, int& posicao);
+  void getValores();
+  void readLDR(const int& ldrSuperior_D,const int& ldrSuperior_E, const int& ldrInferior_D, const int& ldrInferior_E);
+  void girassol();
+  
 private:
-  byte _ldrSuperior;
-  byte _ldrInferior;
+  int readSuperior_D;
+  int readSuperior_E;
+  int readInferior_E;
+  int readInferior_D;
+  int posicao_x;
+  int posicao_y;
 };
 
 #endif

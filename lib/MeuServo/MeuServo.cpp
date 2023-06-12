@@ -19,12 +19,10 @@ void MeuServo::mover(int graus)
   if (posicao < graus) {
     for (grauAtual = posicao; grauAtual < graus; grauAtual++) {
       write(grauAtual);
-      delay(4);
     }
   } else {
     for (grauAtual = posicao; grauAtual > graus; grauAtual--) {
       write(grauAtual);
-      delay(4);
     }
   }
   posicao = grauAtual;
