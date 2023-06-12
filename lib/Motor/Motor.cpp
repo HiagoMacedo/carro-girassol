@@ -17,14 +17,14 @@ void Motor::begin()
   analogWrite(_pinoEnable, 0);
 }
 
-void Motor::moverFrente(byte velocidade)
+void Motor::moverFrente(int velocidade)
 {
   analogWrite(this->_pinoEnable, velocidade);
   digitalWrite(this->_pino1, HIGH);
   digitalWrite(this->_pino2, LOW);
 }
 
-void Motor::moverTras(byte velocidade)
+void Motor::moverTras(int velocidade)
 {
   analogWrite(this->_pinoEnable, velocidade);
   digitalWrite(this->_pino2, HIGH);

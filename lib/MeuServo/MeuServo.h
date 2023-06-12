@@ -8,13 +8,10 @@ class MeuServo : public Servo
 {
 public:
   MeuServo();
-  // void begin(byte pino_servo);
   void mover(int graus);
 
 private:
-  // byte _pinoServo;
-  // int _posicao;
-  // int _grauAtual;
+  int _posicao;
 };
 
 #endif

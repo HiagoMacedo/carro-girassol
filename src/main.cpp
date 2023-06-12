@@ -16,8 +16,8 @@
 #define ECHO 4
 #define TRIGGER 3
 
-#define SERVO_NORTE_SUL
-#define SERVO_LESTE_OESTE
+#define SERVO_NORTE_SUL 12
+#define SERVO_LESTE_OESTE 13
 
 #define MAX_DISTANCIA 25
 #define VELOCIDADE 140

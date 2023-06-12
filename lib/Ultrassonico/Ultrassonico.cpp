@@ -21,7 +21,6 @@ void Ultrassonico::begin()
 
 bool Ultrassonico::checarObjeto(int distanciaMax)
 {
-  // _distanciaAtual = ping();
   return (ping() < distanciaMax);
 }
 
@@ -44,9 +43,6 @@ int Ultrassonico::ping()
     duracao = pulseIn(_pinoEcho, HIGH);
     total_ping += (duracao * 0.01715); /* 0.01715 = Velocidade do som em cm/μs dividido por 2 */
   }
-  Serial.print("Distancia = ");
-  Serial.println(total_ping/qtd_ping);
-  Serial.println("");
   return (total_ping/qtd_ping);
 }
 
@@ -76,7 +72,6 @@ int Ultrassonico::checarArea(int distanciaMax)
 
 static unsigned int grauDistanciaMax;
 int distanciaMax;
-// static float distanciaAtual;
 
 bool Ultrassonico::findDistanciaMax(int* distanciaMax)
 {
@@ -90,33 +85,3 @@ bool Ultrassonico::findDistanciaMax(int* distanciaMax)
   }
   return false;
 }
-
-// Distancia static d2;
-// int Ultrassonico::scannerArea()
-// {
-//   distanciaMax = -1;
-//   _servo.mover(180);
-//   grauDistanciaMax = 180;
-//   findDistanciaMax(&distanciaMax);
-//   Serial.print("Distancia(180): ");
-//   Serial.println(distanciaMax);
-
-//   _servo.mover(90);
-//   if (findDistanciaMax(&distanciaMax) == true) {
-//     grauDistanciaMax = 90;
-//   }
-//   Serial.print("Distancia(90): ");
-//   Serial.println(distanciaMax);
-
-//   _servo.mover(1);
-//   if (findDistanciaMax(&distanciaMax) == true) {
-//     grauDistanciaMax = 1;
-//   }
-//   Serial.print("Distancia(1): ");
-//   Serial.println(distanciaMax);
-  
-//   Serial.print("Grau Max: ");
-//   Serial.println(grauDistanciaMax);
-//   return grauDistanciaMax;
-//   // return 0;
-// }

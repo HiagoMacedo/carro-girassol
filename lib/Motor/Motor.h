@@ -10,8 +10,8 @@ public:
   Motor(byte pino1, byte pino2, byte pino_enable);
 
   void begin();
-  void moverFrente(byte velocidade);
-  void moverTras(byte velocidade);
+  void moverFrente(int velocidade);
+  void moverTras(int velocidade);
   void parar();
 
   void setPino1(byte pino_1);

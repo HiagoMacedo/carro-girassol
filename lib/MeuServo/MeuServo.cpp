@@ -4,26 +4,18 @@
 
 
 MeuServo::MeuServo() {}
-// MeuServo::MeuServo(byte pino_servo) : _pinoServo(pino_servo) {}
-
-// void MeuServo::begin(byte pino_servo)
-// {
-//   attach(pino_servo);
-//   mover(90);
-// }
 
 void MeuServo::mover(int graus)
 {
   static int grauAtual;
-  static int posicao = 0;
-  if (posicao < graus) {
-    for (grauAtual = posicao; grauAtual < graus; grauAtual++) {
+  if (_posicao < graus) {
+    for (grauAtual = _posicao; grauAtual < graus; grauAtual++) {
       write(grauAtual);
     }
   } else {
-    for (grauAtual = posicao; grauAtual > graus; grauAtual--) {
+    for (grauAtual = _posicao; grauAtual > graus; grauAtual--) {
       write(grauAtual);
     }
   }
-  posicao = grauAtual;
+  _posicao = grauAtual;
 }
