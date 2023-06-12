@@ -73,30 +73,3 @@ void loop()
     break;
   }
 }
-
-void teste() {
-  if(!sensorUltrassom.checarObjeto(MAX_DISTANCIA)) {
-    carro.moverFrente(VELOCIDADE);
-    delay(200);
-  }
-  carro.parar();
-  delay(100);
-  switch (sensorUltrassom.checarArea(MAX_DISTANCIA)) {
-  case 1: /* 1 grau */
-    carro.girarDireita(1400);
-    delay(400);
-    break;
-  case 2: /* 90 graus */
-    carro.moverFrente(VELOCIDADE);
-    delay(400);
-    break;
-  case 3: /* 180 graus */
-    carro.girarEsquerda(1400);
-    delay(400);
-    break;
-  default: /* dar uma volta */
-    carro.moverTras(VELOCIDADE);
-    delay(400);
-    break;
-  }
-}
