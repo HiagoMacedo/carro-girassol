@@ -5,6 +5,7 @@
 
 MeuServo::MeuServo() {}
 
+int posicao;
 void MeuServo::mover(int graus)
 {
   static int grauAtual;
